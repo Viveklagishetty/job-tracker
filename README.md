@@ -145,16 +145,6 @@ CREATE TABLE applications (
 
 3. Open browser: `http://localhost:5173`
 
-## GitHub Setup
-
-```bash
-git init
-git add .
-git commit -m "Initial Job Application Tracker project"
-git branch -M main
-git remote add origin YOUR_GITHUB_REPOSITORY_URL
-git push -u origin main
-```
 
 **Important**: Ensure `backend/.env` and `backend/venv/` are in `.gitignore` before pushing.
 
