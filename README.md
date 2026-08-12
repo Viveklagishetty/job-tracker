@@ -148,20 +148,3 @@ CREATE TABLE applications (
 
 **Important**: Ensure `backend/.env` and `backend/venv/` are in `.gitignore` before pushing.
 
-## Project Structure
-  job-application-tracker/
-  ├── backend/
-  │ ├── .env
-  │ ├── app.py
-  │ └── requirements.txt
-  ├── frontend/
-  │ ├── src/
-  │ │ ├── pages/
-  │ │ ├── components/
-  │ │ ├── api.js
-  │ │ ├── App.jsx
-  │ │ └── main.jsx
-  │ ├── package.json
-  │ └── vite.config.js
-  ├── .gitignore
-  └── README.md
