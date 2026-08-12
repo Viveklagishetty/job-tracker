@@ -1,0 +1,43 @@
+1. What is React Router and how did you implement a protected route?
+A. React Router helps navigate between pages in a React app without refreshing the whole page. 
+    I used BrowserRouter and protected pages like Dashboard and Applications using a ProtectedRoute component that checks whether the user is logged in and redirects to /login if not.
+    
+    Protected route component code: 
+
+    import { Navigate } from 'react-router-dom'
+    import { useAuth } from '../AuthContext'
+
+    export default function ProtectedRoute({ children }) {
+    const { user, loading } = useAuth()
+
+    if (loading) {
+        return <div>Loading...</div>
+    }
+
+    if (!user) {
+        return <Navigate to="/login" replace />
+    }
+
+    return children
+    }
+
+2. What is the difference between Axios and fetch()? Why did you use Axios?
+A. fetch() is built into JavaScript, while Axios is a library that makes API requests easier by handling JSON responses and errors more conveniently. 
+    I used Axios because it allowed me to create one reusable API configuration with withCredentials: true for sending the Flask session cookie.
+
+    const api = axios.create({
+    baseURL: 'http://localhost:5000',
+    withCredentials: true,
+    })
+
+3. How does your React app know if the user is logged in?
+A. I stored the logged-in user in AuthContext and checked the Flask session using the /api/me endpoint when the application loads. 
+    The user information is available through useAuth(), so components like Navbar can display the username and provide the logout button.
+
+    const { user, logout } = useAuth()
+
+    <span>{user?.username}</span>
+    <button onClick={handleLogout}>Logout</button>
+
+4. What was the hardest part of connecting React to Flask and how did you solve it?
+A. The hardest part was getting the Flask session cookie to work correctly between React and Flask. I solved it by using withCredentials: true in Axios and enabling supports_credentials=True with the correct React origin in Flask-CORS.
